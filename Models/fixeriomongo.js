@@ -40,7 +40,8 @@ var NewfxSchema = new Schema({
         THB: Number,
         TRY: Number,
         ZAR: Number,
-        EUR: Number
+        EUR: Number,
+        USD: Number
     }
 
 });

@@ -12,7 +12,7 @@ var requestify = require('requestify');
 var Newfx = require('../models/fixeriomongo');
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost/'); // connect to our database
-
+var db = mongoose.connection;
 
 
 
@@ -54,13 +54,20 @@ requestify.get('http://api.fixer.io/latest?base=USD').then(function(response) {
     fx2.rates.TRY = car.rates.TRY;
     fx2.rates.ZAR = car.rates.ZAR;
     fx2.rates.EUR = car.rates.EUR;
-
+    fx2.rates.USD = car.rates.USD;
     
     fx2.save();
 
 });
 
 
+console.log('waiting');
+setTimeout(function() {
+    console.log('Closing DB');
+    db.close();
+
+    console.log('waited');
+}, 10000);
 
 
 

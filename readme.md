@@ -1,6 +1,6 @@
 License: MINE. not open source.
 
-Run CurrencyFX.js to get exchange rates into Mongo.
+Run fixerio.js to get exchange rates into Mongo.
 
 Run www file to fire up server
 
