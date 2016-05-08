@@ -7,12 +7,25 @@ var router = express.Router();
 var Newfx = require('../models/fixeriomongo');
 
 router.get('/', function(req, res) {
-    Newfx.find().sort('-date').limit(1).exec(function(err, Newfx) {
+    Newfx.find().select().sort('-date').limit(1).exec(function(err, Newfx) {
         if (err)
             res.send(err);
 
         res.json(Newfx);
     });
 });
+
+router.route('/:currency')
+    .get(function(req,res) {
+        Newfx.find().select('rates.'+req.params.currency).sort('-date').limit(1).exec(function(err, Newfx) {
+            if (err)
+                res.send(err);
+
+            res.json(Newfx);
+        });
+
+    });
+
+///beer/:beer_id
 
 module.exports = router;
